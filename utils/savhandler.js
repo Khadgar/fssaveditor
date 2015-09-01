@@ -28,30 +28,33 @@ var decrypt = function(data) {
 	chunks.push(cipher.update(data, "base64", "utf8"));
 	//cipher.final([output_encoding])
 	chunks.push(cipher.final("utf8"));
-	return chunks.join('');;
+	return chunks.join('');
 };
 
-//File Read
-console.log('Reading: Vault1.sav');
-var file = fs.readFileSync('Vault1.sav', "utf8");
-//The content is in base64
-//var base64text = new Buffer(file,'base64')
-var base64text = new Buffer(file,'base64')
+exports.encrypt = encrypt;
+exports.decrypt = decrypt;
 
-//Decrypting
-console.log('Decrypting Vault1.sav');
-var decrypted = decrypt(base64text).toString()
-fs.writeFileSync('fs.tmp', decrypted);
-//Encrypting
-console.log('Reencrypting Vault1.sav');
-var encrypt = encrypt(decrypted)
+//--------------------------------TEST----------------------------------------------------
+// // File Read
+// console.log('Reading: Vault1.sav');
+// var file = fs.readFileSync('Vault1.sav', "utf8");
+// // The content is in base64
+// // var base64text = new Buffer(file,'base64')
+// var base64text = new Buffer(file,'base64')
 
-
-//console.log('Encrypted text: ',hw.toString('utf8'),hw.toString('utf8').length)
-console.log('Decrypted text: ',JSON.parse(decrypted))
-
-console.log('Write encrypted result Vault1.sav');
-fs.writeFileSync('encrypted_fs.tmp', encrypt);
+// // Decrypting
+// console.log('Decrypting Vault1.sav');
+// var decrypted = decrypt(base64text).toString()
+// fs.writeFileSync('fs.tmp', decrypted);
+// // Encrypting
+// console.log('Reencrypting Vault1.sav');
+// var encrypt = encrypt(decrypted)
 
 
+// // console.log('Encrypted text: ',hw.toString('utf8'),hw.toString('utf8').length)
+// console.log('Decrypted text: ',JSON.parse(decrypted))
+
+// console.log('Write encrypted result Vault1.sav');
+// fs.writeFileSync('encrypted_fs.tmp', encrypt);
+//------------------------------------------------------------------------------------------
 
