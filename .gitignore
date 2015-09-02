@@ -143,6 +143,7 @@ AppPackages/
 # Others
 sql/
 node_modules/
+bower_components/
 *.Cache
 *.sav
 ClientBin/

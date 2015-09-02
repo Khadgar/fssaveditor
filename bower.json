@@ -1,0 +1,20 @@
+{
+  "name": "fssaveditor",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Khadgar/fssaveditor",
+  "authors": [
+    "Khadgar <daniel.szaniszlo@gmail.com>"
+  ],
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-file-upload": "~7.0.15"
+  }
+}

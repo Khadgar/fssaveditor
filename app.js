@@ -1,7 +1,8 @@
 var express = require('express');
 var path = require('path');
 var app = express();
-app.use(express.static('files'));
+app.use('/scripts', express.static('scripts'));
+app.use('/bower_components', express.static('bower_components'));
 
 //routes
 require(path.join(__dirname, './routes/index.js')).Index(app);

@@ -21,7 +21,7 @@ var Index = function(app) {
 		console.log('Write encrypted result Vault1.sav');
 		fs.writeFileSync(path.join(__dirname, '../files/NEW_Vault1.sav'), encrypted);
 		
-        res.send('FOS sav editor');
+        res.sendFile(path.join(__dirname, '../views','index.html'));
     });
 
 };
