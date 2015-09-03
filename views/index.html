@@ -1,11 +1,88 @@
 <html>
 	<head>
 		<title>Fallout Shelter SAV editor</title>
-		<script src="./scripts/dropzone.js"></script>
+		<script src="..\bower_components\angular\angular.min.js"></script>
+		<script src="..\bower_components\ng-file-upload\ng-file-upload.min.js"></script>
+		<script src="..\bower_components\ng-file-upload\ng-file-upload-shim.min.js"></script>
+		<script>
+		//inject angular file upload directives and services.
+		var app = angular.module('fileUpload', ['ngFileUpload']);
+		
+
+		app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+			$scope.$watch('files', function () {
+				$scope.upload($scope.files);
+			});
+			$scope.$watch('file', function () {
+				if ($scope.file != null) {
+					$scope.upload([$scope.file]);
+				}
+			});
+			$scope.log = '';
+
+			$scope.upload = function (files) {
+				if (files && files.length) {
+					for (var i = 0; i < files.length; i++) {
+					  var file = files[i];
+					  if (!file.$error) {
+						Upload.upload({
+							url: '/upload',
+							file: file
+						}).progress(function (evt) {
+							var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+							$scope.log = 'progress: ' + progressPercentage + '% ' +
+										evt.config.file.name + '\n' + $scope.log;
+						}).success(function (data, status, headers, config) {
+							$timeout(function() {
+								$scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+							});
+						});
+					  }
+					}
+				}
+			};
+		}]);
+		
+		</script>
+		<style>
+		.button {
+			-moz-appearance: button;
+			/* Firefox */
+			-webkit-appearance: button;
+			/* Safari and Chrome */
+			padding: 10px;
+			margin: 10px;
+			width: 70px;
+		}
+		.drop-box {
+			background: #F8F8F8;
+			border: 5px dashed #DDD;
+			width: 200px;
+			height: 65px;
+			text-align: center;
+			padding-top: 25px;
+			margin: 10px;
+		}
+		.dragover {
+			border: 5px dashed blue;
+		}
+		</style>
+	
 	</head>
 	<body>
-		<h1>HELLO</h1>
-		<form action="/upload" class="dropzone">
-		</form>
+		<div ng-app="fileUpload" ng-controller="MyCtrl">
+		<div ngf-drop ngf-select ng-model="files" class="drop-box" 
+			ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+			accept="image/*,application/pdf" 
+			ngf-pattern="'.sav,.json'">Drop SAV/JSON here or click to upload</div>
+		<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+		Files:
+		<ul>
+			<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+		</ul>
+		Upload Log:
+		<pre>{{log}}</pre>
+	</div>
+	</div>
 	</body>
 </html>

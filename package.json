@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "busboy": "^0.2.11",
+    "connect-busboy": "0.0.2",
     "express": "^4.13.3"
   }
 }
