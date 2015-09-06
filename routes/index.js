@@ -7,7 +7,6 @@ var decrypt = require(path.join(__dirname, '../utils/savhandler.js')).decrypt;
 var Index = function(app, busboy) {
 
     app.get('/', function(req, res) {
-		console.log('index.html');
         res.sendFile(path.join(__dirname, '../views','index.html'));
     });
 	
@@ -19,9 +18,7 @@ var Index = function(app, busboy) {
             //temp dir of the files
             fstream = fs.createWriteStream(path.join(__dirname, '../files/' + filename));
             file.pipe(fstream);
-			
             fstream.on('close', function() {
-				console.log('close')
 				//redirect nem megy mert angular nem engedi az url-t megvaltoztatni
                 res.redirect('/content');
             });
@@ -44,7 +41,7 @@ var Index = function(app, busboy) {
 		fs.writeFileSync(path.join(__dirname, '../files/NEW_Vault1.sav'), encrypted);
 		
 		//Elküldi de nem fog az url megvaltozni itt lehetne elkuldeni dekodolt jsont.
-        res.send('NICE CONTENT');
+        res.send(JSON.parse(decrypted));
     });
 
 };

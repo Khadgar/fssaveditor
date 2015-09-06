@@ -4,6 +4,7 @@ var app = express();
 var busboy = require('connect-busboy');
 app.use('/scripts', express.static('scripts'));
 app.use('/bower_components', express.static('bower_components'));
+app.use('/views', express.static('views'));
 app.use(busboy());
 
 //routes
