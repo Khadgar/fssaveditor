@@ -14,14 +14,11 @@ app.config(function($routeProvider, $locationProvider) {
 		$locationProvider.html5Mode(true);
     });
 
-// create the controller and inject Angular's $scope
 app.controller('bodyController',['$scope', function($scope) {
-	// create a message to display in our view
 	$scope.message = 'Fallout Shelter SAV editor';
 }]);
 
-app.controller('contentController',['$scope', function($scope) {
-	// create a message to display in our view
-	$scope.message = 'Fallout Shelter SAV editor';
-	//console.log($scope.data)
+app.controller('contentController',['$scope','VaultData', function($scope,VaultData) {
+	$scope.message = JSON.stringify(VaultData.getVault());
+	console.log('/content opened')
 }]);

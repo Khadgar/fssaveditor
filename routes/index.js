@@ -10,6 +10,10 @@ var Index = function(app, busboy) {
         res.sendFile(path.join(__dirname, '../views','index.html'));
     });
 	
+	app.get('/content', function(req, res) {
+        res.sendFile(path.join(__dirname, '../views','index.html'));
+    });
+	
 	app.post('/upload', function(req, res) {
         var fstream;
         req.pipe(req.busboy);
@@ -20,12 +24,12 @@ var Index = function(app, busboy) {
             file.pipe(fstream);
             fstream.on('close', function() {
 				//redirect nem megy mert angular nem engedi az url-t megvaltoztatni
-                res.redirect('/content');
+                res.redirect('/sendVault');
             });
         });
     });
 	
-	app.get('/content', function(req, res) {
+	app.get('/sendVault', function(req, res) {
 		console.log('Reading original: Vault1.sav');
 		var file = fs.readFileSync(path.join(__dirname, '../files/Vault1.sav'), "utf8");
 		// The content is in base64

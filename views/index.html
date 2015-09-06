@@ -7,12 +7,10 @@
     <script src="../bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
 	<script src="../scripts/file_upload.js"></script>
 	<script src="../scripts/single_page.js"></script>
+	<link rel="stylesheet" href="../scripts/file_upload_style.css" />
 	<base href="/">
-	
-    <link rel="stylesheet" href="../scripts/file_upload_style.css" />
   </head>
-  <body ng-app="mainApp" ng-controller="bodyController">
-  <h1>{{message}}</h1>
-  <div ng-view></div>
+  <body ng-app="mainApp">
+	<div ng-view></div>
   </body>
 </html>

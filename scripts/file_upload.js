@@ -1,8 +1,22 @@
 //inject angular file upload directives and services.
 var app = angular.module('mainApp', ['ngFileUpload','ngRoute']);
 
-app.factory('VaultData', function () {
-    return { Content: '' };
+app.service('VaultData', function() {
+  var vault ='';
+
+  var setVault = function(newObj) {
+      vault = newObj;
+  };
+
+  var getVault = function(){
+      return vault;
+  };
+
+  return {
+    setVault: setVault,
+    getVault: getVault
+  };
+
 });
 
 app.controller('uploadController', ['$scope', 'Upload', '$timeout','$location','VaultData', function ($scope, Upload, $timeout, $location, VaultData) {
@@ -31,12 +45,11 @@ app.controller('uploadController', ['$scope', 'Upload', '$timeout','$location','
 							}).success(function (data, status, headers, config) {
 								$timeout(function () {
 									$scope.log = 'file: ' + config.file.name + ', Response: ' + data + '\n' + $scope.log;
-									
+									//Share data between controllers
+									VaultData.setVault(data);
+									$location.path('/content')
 								});
-								//$scope.VaultData=data
-								//console.log(data)
 							});
-							$location.path('/content')
 						}
 					}
 				}
