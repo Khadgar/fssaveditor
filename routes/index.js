@@ -6,6 +6,7 @@ var decrypt = require(path.join(__dirname, '../utils/savhandler.js')).decrypt;
 
 var Index = function(app, busboy) {
 
+	//minden route-ra az indexet adom vissza
     app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname, '../views','index.html'));
     });
@@ -14,6 +15,7 @@ var Index = function(app, busboy) {
         res.sendFile(path.join(__dirname, '../views','index.html'));
     });
 	
+	//A feltoltest kezeli es elinditja a /sendVault -ot (ossze is lehetne vonni de igy sztem olvashatobb)
 	app.post('/upload', function(req, res) {
         var fstream;
         req.pipe(req.busboy);
@@ -23,12 +25,14 @@ var Index = function(app, busboy) {
             fstream = fs.createWriteStream(path.join(__dirname, '../files/' + filename));
             file.pipe(fstream);
             fstream.on('close', function() {
-				//redirect nem megy mert angular nem engedi az url-t megvaltoztatni
+				//redirect kliens oldalon nem megy mert angular nem engedi az url-t megvaltoztatni, de szerver oldalon megy
                 res.redirect('/sendVault');
             });
         });
     });
 	
+	//Ennek csak decryptalni kell majd elkuldeni a kliensnek a decryptelt sav-ot.
+	//Kell egy masik ami fogadja a modositott jsont es decrypteli majd visszakuldi a kliensnek.
 	app.get('/sendVault', function(req, res) {
 		console.log('Reading original: Vault1.sav');
 		var file = fs.readFileSync(path.join(__dirname, '../files/Vault1.sav'), "utf8");
