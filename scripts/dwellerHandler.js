@@ -1,17 +1,22 @@
 //Returns every dweller from the Vault with unique id
 //data: entire SAV (decrypted SAV)
 var getDwellers = function (data) {
+	console.log('getDwellers - data',data);
+	dwellers = [];
 	if (data) {
-		var dwellers = {};
 		for (var i = 0; i < data['dwellers']['dwellers'].length; i++) {
-			dwellers[data['dwellers']['dwellers'][i]['serializeId']] = {
+			dweller = {};
+			dweller['serializeId'] = data['dwellers']['dwellers'][i]['serializeId'];
+			dweller['attributes'] = {
 				'name' : data['dwellers']['dwellers'][i]['name'],
-				'lastName' : data['dwellers']['dwellers'][i]['lastName'],
-				'serializeId' : data['dwellers']['dwellers'][i]['serializeId']
+				'lastName' : data['dwellers']['dwellers'][i]['lastName']
 			};
+			console.log(dweller);
+			dwellers.push(dweller);
 		}
 	}
-	return dwellers
+	console.log('getDwellers',dwellers);
+	return dwellers;
 };
 
 //Sets a dweller's name and lastName attribute.
@@ -19,12 +24,11 @@ var getDwellers = function (data) {
 //id: unique serializeId of the dweller
 //name, lastName: new first name, last name
 var setDwellerName = function (dwellers, id, name, lastName) {
-	
-	if (dwellers[id]) {
-		dwellers[id] = {
-			'name' : name,
-			'lastName' : lastName
-		};
+	for (var i = 0; i < dwellers.length; i++) {
+		if(dwellers[i]['serializeId'] == id){
+			dwellers[i]['attributes']['name'] = name;
+			dwellers[i]['attributes']['lastName'] = lastName;
+		}
 	}
 };
 
@@ -34,9 +38,9 @@ var setDwellerName = function (dwellers, id, name, lastName) {
 var saveDweller = function (data, dwellers) {
 	if (data && dwellers) {
 		for (var i = 0; i < data['dwellers']['dwellers'].length; i++) {
-			if(data['dwellers']['dwellers'][i]['serializeId'] == (i + 1)){
-				data['dwellers']['dwellers'][i]['name'] = dwellers[i + 1]['name'];
-				data['dwellers']['dwellers'][i]['lastName'] = dwellers[i + 1]['lastName'];
+			if(data['dwellers']['dwellers'][i]['serializeId'] == dwellers[i]['serializeId']){
+				data['dwellers']['dwellers'][i]['name'] = dwellers[i]['attributes']['name'];
+				data['dwellers']['dwellers'][i]['lastName'] = dwellers[i]['attributes']['lastName'];
 			}
 		}
 	}
