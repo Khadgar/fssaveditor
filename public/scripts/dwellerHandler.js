@@ -1,7 +1,6 @@
 //Returns every dweller from the Vault with unique id
 //data: entire SAV (decrypted SAV)
 var getDwellers = function (data) {
-	console.log('getDwellers - data',data);
 	dwellers = [];
 	if (data) {
 		for (var i = 0; i < data['dwellers']['dwellers'].length; i++) {
@@ -11,11 +10,9 @@ var getDwellers = function (data) {
 				'name' : data['dwellers']['dwellers'][i]['name'],
 				'lastName' : data['dwellers']['dwellers'][i]['lastName']
 			};
-			console.log(dweller);
 			dwellers.push(dweller);
 		}
 	}
-	console.log('getDwellers',dwellers);
 	return dwellers;
 };
 

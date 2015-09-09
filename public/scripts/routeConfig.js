@@ -2,14 +2,17 @@ app.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 		// route for the upload page
 		.when('/', {
-			templateUrl : './views/upload.html',
+			templateUrl : './upload.html',
 			controller  : 'bodyController'
 		})
 
 		// route for the content page
 		.when('/content', {
-			templateUrl : './views/content.html',
+			templateUrl : './content.html',
 			controller  : 'contentController'
 		})
+		.otherwise({
+		redirect: '/'
+		});
 	$locationProvider.html5Mode(true);
 });
