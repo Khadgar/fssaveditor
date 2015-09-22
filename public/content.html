@@ -1,5 +1,10 @@
 <div>
 	<h1>Content Page</h1>
-
 	<p>{{ message }}</p>
+	<h1>generated list from JSON</h1>
+	<ul>
+		<li ng-repeat="dweller in message">
+			{{dweller.attributes.name}} {{dweller.attributes.lastName}}
+		</li>
+	</ul>
 </div>
