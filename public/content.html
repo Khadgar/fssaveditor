@@ -2,18 +2,28 @@
 	<h1>Content Page</h1>
 	<!--<p>{{ message }}</p>-->
 	<h1>generated list from JSON</h1>
-	<ul>
-		<li ng-repeat="dweller in message">
-			{{dweller.attributes.name}} {{dweller.attributes.lastName}}
-			<i>Stats: 
-				<b>S</b>:{{dweller.attributes.Strength}} 
-				<b>P</b>:{{dweller.attributes.Perception}} 
-				<b>E</b>:{{dweller.attributes.Endurance}} 
-				<b>C</b>:{{dweller.attributes.Charisma}} 
-				<b>I</b>:{{dweller.attributes.Intelligence}} 
-				<b>A</b>:{{dweller.attributes.Agility}} 
-				<b>L</b>:{{dweller.attributes.Luck}}
-			</i>
-		</li>
-	</ul>
+	<table>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Strength</th>
+			<th>Perception</th>
+			<th>Endurance</th>
+			<th>Charisma</th>
+			<th>Intelligence</th>
+			<th>Agility</th>
+			<th>Luck</th>
+		</tr>
+		<tr ng-repeat="dweller in message">
+			<td>{{dweller.attributes.name}}</td>
+			<td>{{dweller.attributes.lastName}}</td>
+			<td>{{dweller.attributes.Strength}}</td>
+			<td>{{dweller.attributes.Perception}}</td>
+			<td>{{dweller.attributes.Endurance}}</td>
+			<td>{{dweller.attributes.Charisma}}</td>
+			<td>{{dweller.attributes.Intelligence}}</td>
+			<td>{{dweller.attributes.Agility}}</td>
+			<td>{{dweller.attributes.Luck}}</td>		
+		</tr>
+	</table>
 </div>
