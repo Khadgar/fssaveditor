@@ -1,16 +1,23 @@
 {
-  "name": "fssaveditor",
-  "version": "0.0.1",
-  "description": "Fallout Shelter save file editor",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "busboy": "^0.2.11",
-    "connect-busboy": "0.0.2",
-    "express": "^4.13.3"
-  }
+	"name" : "fssaveditor",
+	"version" : "0.0.1",
+	"description" : "Fallout Shelter save file editor",
+	"main" : "app.js",
+	"scripts" : {
+		"test" : "echo \"Error: no test specified\" && exit 1"
+	},
+	"author" : "Daniel Szaniszlo",
+	"license" : "ISC",
+	"dependencies" : {
+		"busboy" : "^0.2.11",
+		"connect-busboy" : "0.0.2",
+		"express" : "^4.13.3"
+	},
+	"scripts" : {
+		"postinstall" : "bower install"
+	},
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/Khadgar/fssaveditor.git"
+	}
 }
