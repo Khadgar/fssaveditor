@@ -1,10 +1,19 @@
 <div>
 	<h1>Content Page</h1>
-	<p>{{ message }}</p>
+	<!--<p>{{ message }}</p>-->
 	<h1>generated list from JSON</h1>
 	<ul>
 		<li ng-repeat="dweller in message">
 			{{dweller.attributes.name}} {{dweller.attributes.lastName}}
+			<i>Stats: 
+				<b>S</b>:{{dweller.attributes.Strength}} 
+				<b>P</b>:{{dweller.attributes.Perception}} 
+				<b>E</b>:{{dweller.attributes.Endurance}} 
+				<b>C</b>:{{dweller.attributes.Charisma}} 
+				<b>I</b>:{{dweller.attributes.Intelligence}} 
+				<b>A</b>:{{dweller.attributes.Agility}} 
+				<b>L</b>:{{dweller.attributes.Luck}}
+			</i>
 		</li>
 	</ul>
 </div>

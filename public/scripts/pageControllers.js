@@ -8,6 +8,8 @@ app.controller('contentController',['$scope','VaultData', function($scope,VaultD
 	var dwellers = getDwellers(SAVDATA);
 	//set new first name and last name to a dweller
 	setDwellerName(dwellers,10,'Dani','Dani');
+	//set new SPECIAL values to dweller 10
+	setDwellerSpecial(dwellers,10,9,9,9,9,9,9,9);
 	//insert the modified dweller/dwellers into the decrypted SAV
 	VaultData.setVault(saveDweller(SAVDATA,dwellers));
 	//display new dwellers
