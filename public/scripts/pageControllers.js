@@ -16,4 +16,14 @@ app.controller('contentController',['$scope','VaultData', function($scope,VaultD
 	$scope.message = getDwellers(SAVDATA);
 	//display the content of the sav on console
 	console.log('Modded Dwellers: ',VaultData.getVault())
+	
+	
+	$scope.eEditable = false;
+	$scope.lostFocus = function () {
+		$scope.eEditable = false;
+	}
+	$scope.onFocus = function () {
+		$scope.eEditable = true;
+	}
+	
 }]);

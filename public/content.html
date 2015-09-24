@@ -1,9 +1,10 @@
 <div>
 	<h1>Content Page</h1>
 	<!--<p>{{ message }}</p>-->
-	<h1>generated list from JSON</h1>
+	<h1>generated table from JSON</h1>
 	<table>
 		<tr>
+			<th>ID</th>
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Strength</th>
@@ -15,15 +16,17 @@
 			<th>Luck</th>
 		</tr>
 		<tr ng-repeat="dweller in message">
-			<td>{{dweller.attributes.name}}</td>
-			<td>{{dweller.attributes.lastName}}</td>
-			<td>{{dweller.attributes.Strength}}</td>
-			<td>{{dweller.attributes.Perception}}</td>
-			<td>{{dweller.attributes.Endurance}}</td>
-			<td>{{dweller.attributes.Charisma}}</td>
-			<td>{{dweller.attributes.Intelligence}}</td>
-			<td>{{dweller.attributes.Agility}}</td>
-			<td>{{dweller.attributes.Luck}}</td>		
+			<td>{{dweller.serializeId}}</td>
+			<td><input type="text" value="{{dweller.attributes.name}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.name"/></td>
+			<td><input type="text" value="{{dweller.attributes.lastName}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.lastName"/></td>
+			<td><input type="text" value="{{dweller.attributes.Strength}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Strength"/></td>
+			<td><input type="text" value="{{dweller.attributes.Perception}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Perception"/></td>
+			<td><input type="text" value="{{dweller.attributes.Endurance}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Endurance"/></td>
+			<td><input type="text" value="{{dweller.attributes.Charisma}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Charisma"/></td>
+			<td><input type="text" value="{{dweller.attributes.Intelligence}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Intelligence"/></td>
+			<td><input type="text" value="{{dweller.attributes.Agility}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Agility"/></td>
+			<td><input type="text" value="{{dweller.attributes.Luck}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Luck"/></td>		
 		</tr>
 	</table>
+	<p ng-model="message">{{ message }}</p>
 </div>

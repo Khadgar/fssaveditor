@@ -1,0 +1,18 @@
+.container {
+    margin-top:10px;
+    font-family:arial;
+}
+input:focus {
+    //change more attributes, if you want.
+}
+input {
+    border:none;
+    background-color:transparent;
+}
+.container header {
+    padding-bottom:10px;
+    border-bottom:1px solid black;
+}
+ul, input, .container {
+    padding:10px;
+}
