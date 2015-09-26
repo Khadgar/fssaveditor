@@ -15,7 +15,7 @@
 			<th>Agility</th>
 			<th>Luck</th>
 		</tr>
-		<tr ng-repeat="dweller in message">
+		<tr ng-repeat="dweller in dwellerContainer">
 			<td>{{dweller.serializeId}}</td>
 			<td><input type="text" value="{{dweller.attributes.name}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.name"/></td>
 			<td><input type="text" value="{{dweller.attributes.lastName}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.lastName"/></td>
@@ -28,5 +28,6 @@
 			<td><input type="text" value="{{dweller.attributes.Luck}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Luck"/></td>		
 		</tr>
 	</table>
-	<p ng-model="message">{{ message }}</p>
+	<button ng-click="save(dwellerContainer)">Generate</button>
+	<!--<p ng-model="message">{{ message }}</p>-->
 </div>

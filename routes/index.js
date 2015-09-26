@@ -57,7 +57,11 @@ var Index = function(app, busboy) {
         res.send('ENCRYPTED FILE')
 		//res.json(JSON.parse(decrypted));
     });
-
+	
+	app.post('/sendSAV', function(req, res) {
+		data = req.body.SAV;
+		res.json(data);
+	});
 };
 
 exports.Index = Index;
