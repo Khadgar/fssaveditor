@@ -35,9 +35,8 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 			data : {'SAV': VaultData.getVault()}
 		}).success(function (response) {
 			console.log("success");
-			console.log(response);
-			var blob = new Blob([JSON.stringify(response)], {type: "text/plain;charset=utf-8"});
-			saveAs(blob, "Vault1.sav");
+			var blob = new Blob([response], {type: "text/plain;charset=utf-8"});
+			saveAs(blob,"Modded_Vault1.sav");
 		}).error(function (response) {
 			console.log("error");
 			console.log(response);

@@ -24,7 +24,13 @@ var Index = function(app, busboy) {
             file.pipe(fstream);
             fstream.on('close', function() {
 				//redirect kliens oldalon nem megy mert angular nem engedi az url-t megvaltoztatni, de szerver oldalon megy
-                res.redirect('/sendDecryptedVault');
+                var file = fs.readFileSync(path.join(__dirname, '../public/files/'+ filename), "utf8");
+				var base64text = new Buffer(file,'base64');
+				//console.log(decrypt(base64text).toString());
+				var decrypted = decrypt(base64text).toString();
+				//fs.writeFileSync(path.join(__dirname, '../public/files/DECJSON_Vault1.sav'), JSON.stringify(decrypted));
+				res.json(JSON.parse(decrypted));
+				//res.redirect('/sendDecryptedVault');
             });
         });
     });
@@ -38,7 +44,7 @@ var Index = function(app, busboy) {
 		var base64text = new Buffer(file,'base64');
 		// Decrypting
 		console.log('Decrypting Vault1.sav');
-		var decrypted = decrypt(base64text).toString()
+		var decrypted = decrypt(base64text).toString();
 		fs.writeFileSync(path.join(__dirname, '../public/files/DEC_Vault1.sav'), decrypted);
 
         //res.send(JSON.parse(decrypted)); res.send and res.json ugyanaz (res.json is res.send-et hiv)
@@ -59,8 +65,9 @@ var Index = function(app, busboy) {
     });
 	
 	app.post('/sendSAV', function(req, res) {
-		data = req.body.SAV;
-		res.json(data);
+		var encrypted = encrypt(JSON.stringify(req.body.SAV));
+		//fs.writeFileSync(path.join(__dirname, '../public/files/NEW_Vault1.sav'), encrypted);
+		res.send(encrypted);
 	});
 };
 
