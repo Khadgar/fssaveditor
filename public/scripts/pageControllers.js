@@ -6,10 +6,12 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 	//VaultData.getVault() contains the decrypted sav as a json
 	var SAVDATA = VaultData.getVault();
 	var dwellers = getDwellers(SAVDATA);
+	//Usage
+	//--------------------------------------------------------------
 	//set new first name and last name to a dweller
-	setDwellerName(dwellers,10,'Dani','Dani');
+	//setDwellerName(dwellers,10,'Dani','Dani');
 	//set new SPECIAL values to dweller 10
-	setDwellerSpecial(dwellers,10,9,9,9,9,9,9,9);
+	//setDwellerSpecial(dwellers,10,9,9,9,9,9,9,9);
 	//insert the modified dweller/dwellers into the decrypted SAV
 	//VaultData.setVault(saveDweller(SAVDATA,dwellers));
 	//display new dwellers
@@ -35,7 +37,7 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 			data : {'SAV': VaultData.getVault()}
 		}).success(function (response) {
 			console.log("success");
-			var blob = new Blob([response], {type: "text/plain;charset=utf-8"});
+			var blob = new Blob([response]);
 			saveAs(blob,"Modded_Vault1.sav");
 		}).error(function (response) {
 			console.log("error");

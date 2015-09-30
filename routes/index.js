@@ -13,7 +13,7 @@ var Index = function(app, busboy) {
        res.redirect('/');
     });
 	
-	//A feltoltest kezeli es elinditja a /sendVault -ot (ossze is lehetne vonni de igy sztem olvashatobb)
+	//A feltoltest kezeli es sikeres feltoltes eseten visszakuldi a dekodolt sav fajlt a kliensnek
 	app.post('/upload', function(req, res) {
         var fstream;
         req.pipe(req.busboy);
@@ -23,49 +23,30 @@ var Index = function(app, busboy) {
             fstream = fs.createWriteStream(path.join(__dirname, '../public/files/' + filename));
             file.pipe(fstream);
             fstream.on('close', function() {
-				//redirect kliens oldalon nem megy mert angular nem engedi az url-t megvaltoztatni, de szerver oldalon megy
                 var file = fs.readFileSync(path.join(__dirname, '../public/files/'+ filename), "utf8");
 				var base64text = new Buffer(file,'base64');
-				//console.log(decrypt(base64text).toString());
 				var decrypted = decrypt(base64text).toString();
-				//fs.writeFileSync(path.join(__dirname, '../public/files/DECJSON_Vault1.sav'), JSON.stringify(decrypted));
+				//needed because of values like: 0.00 JSON.parse() converts 0.00 into 0 
+				var re = /(\...)/g;
+				//it converts every X.00 or X.X0 into X.001 or X.X01
+				decrypted = decrypted.replace(re, '$11');
+				//debugging 
+				//fs.writeFileSync(path.join(__dirname, '../public/files/DEC_Vault1.sav'), decrypted);
 				res.json(JSON.parse(decrypted));
-				//res.redirect('/sendDecryptedVault');
             });
         });
     });
 	
-	//Ennek csak decryptalni kell majd elkuldeni a kliensnek a decryptelt sav-ot.
-	//Kell egy masik ami fogadja a modositott jsont es decrypteli majd visszakuldi a kliensnek.
-	app.get('/sendDecryptedVault', function(req, res) {
-		console.log('Reading original: Vault1.sav');
-		var file = fs.readFileSync(path.join(__dirname, '../public/files/Vault1.sav'), "utf8");
-		// The content is in base64
-		var base64text = new Buffer(file,'base64');
-		// Decrypting
-		console.log('Decrypting Vault1.sav');
-		var decrypted = decrypt(base64text).toString();
-		fs.writeFileSync(path.join(__dirname, '../public/files/DEC_Vault1.sav'), decrypted);
-
-        //res.send(JSON.parse(decrypted)); res.send and res.json ugyanaz (res.json is res.send-et hiv)
-		res.json(JSON.parse(decrypted));
-    });
-	
-	app.get('/sendEncryptedVault', function(req, res) {
-		// Encrypting back
-		console.log('Reencrypting DEC_Vault1.sav');
-		// decrypted -et megkapja kliens oldalrol
-		//var encrypted = encrypt(decrypted)
-		//console.log('Write encrypted result Vault1.sav');
-		//fs.writeFileSync(path.join(__dirname, '../public/files/NEW_Vault1.sav'), encrypted);
-		
-		//visszakuldi a kliensnek az encodeolt fajlt
-        res.send('ENCRYPTED FILE')
-		//res.json(JSON.parse(decrypted));
-    });
-	
+	//sends the encryptes sav object to the client
 	app.post('/sendSAV', function(req, res) {
-		var encrypted = encrypt(JSON.stringify(req.body.SAV));
+		var decrypted = JSON.stringify(req.body.SAV);
+		//removes the previously added 1 from the result
+		var re =  /(\...)1/g;
+		decrypted = decrypted.replace(re, '$1');
+		//encodes the result
+		var encrypted = encrypt(decrypted);
+		//debugging
+		//fs.writeFileSync(path.join(__dirname, '../public/files/NEW_Vault1DEC.sav'), decrypted);
 		//fs.writeFileSync(path.join(__dirname, '../public/files/NEW_Vault1.sav'), encrypted);
 		res.send(encrypted);
 	});
