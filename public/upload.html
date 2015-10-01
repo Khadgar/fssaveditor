@@ -1,13 +1,15 @@
-<div>
-	<h1>Upload</h1>
+<div class="uploadpage">
+	<!--<h1>Upload</h1>
 
-	<p>{{ message }}</p>
+	<p>{{ message }}</p>-->
 	
     <div ng-app="mainApp" ng-controller="uploadController">
 		<div ngf-drop="" ngf-select="" ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true" accept=".sav,.json" ngf-pattern="'.sav,.json'">
-		Drop SAV/JSON here or click to upload
+		Drop your SAV file here or click to upload
 		</div>
 		<div ngf-no-file-drop="">File Drag/Drop is not supported for this browser</div>
+		<div class="hint"><p>> admin@vault:~$ You can find your SAV file on Android system here: /storage/emulated/0/Android/data/com.bethsoft.falloutshelter/files</p></div>
+		<!--
 		Files:
 		<ul>
 		  <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
@@ -16,5 +18,7 @@
 		<pre>
 			{{log}}
 		</pre>
+		-->
 	</div>
+	
 </div>
