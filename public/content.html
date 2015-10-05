@@ -45,8 +45,12 @@
 				<td>Number of Mr. Handy:</td>
 				<td><input type="text" value="0" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="mrhandy" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
 			</tr>
+			<tr>
+				<td>CAPS:</td>
+				<td><input type="text" value="0" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="caps" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+			</tr>
 		</table>
-		<button class ="btn" ng-click="save(dwellerContainer,lunchboxes,mrhandy)">SAVE</button>
+		<button class ="btn" ng-click="save(dwellerContainer,lunchboxes,mrhandy,caps)">SAVE</button>
 	</div>
 	</td>
 	</tr>

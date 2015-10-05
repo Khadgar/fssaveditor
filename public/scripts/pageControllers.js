@@ -27,22 +27,21 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 	$scope.onFocus = function () {
 		$scope.eEditable = true;
 	}
-	$scope.save = function (dwellers, lunchboxes, mrhandy) {
-		VaultData.setVault(saveDweller(SAVDATA, dwellers, lunchboxes, mrhandy));
+	$scope.save = function (dwellers, lunchboxes, mrhandy, caps) {
+		VaultData.setVault(saveDweller(SAVDATA, dwellers, lunchboxes, mrhandy, caps));
 		console.log('Modded Dwellers: ', VaultData.getVault());
 		$http({
 			url : '/sendSAV',
 			method : "POST",
 			headers : {'Content-Type' : 'application/json'},
-			data : {'SAV': VaultData.getVault()}
+			data : {'SAV' : VaultData.getVault()}
 		}).success(function (response) {
 			console.log("success");
 			var blob = new Blob([response]);
-			saveAs(blob,"Modded_Vault1.sav");
+			saveAs(blob, "Modded_Vault1.sav");
 		}).error(function (response) {
 			console.log("error");
 			console.log(response);
 		});
-		}
-
+	}
 }]);
