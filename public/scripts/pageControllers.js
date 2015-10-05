@@ -27,8 +27,8 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 	$scope.onFocus = function () {
 		$scope.eEditable = true;
 	}
-	$scope.save = function (dwellers) {
-		VaultData.setVault(saveDweller(SAVDATA, dwellers));
+	$scope.save = function (dwellers, lunchboxes, mrhandy) {
+		VaultData.setVault(saveDweller(SAVDATA, dwellers, lunchboxes, mrhandy));
 		console.log('Modded Dwellers: ', VaultData.getVault());
 		$http({
 			url : '/sendSAV',

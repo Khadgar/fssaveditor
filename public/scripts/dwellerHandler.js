@@ -57,7 +57,7 @@ var setDwellerSpecial = function (dwellers, id, S, P, E, C, I, A, L) {
 //Inserts dwellers into data
 //data: entire SAV
 //dwellers: modified dwellers
-var saveDweller = function (data, dwellers) {
+var saveDweller = function (data, dwellers, numberOfLunchbox, numberOfMrHandy) {
 	if (data && dwellers) {
 		for (var i = 0; i < data['dwellers']['dwellers'].length; i++) {
 			if(data['dwellers']['dwellers'][i]['serializeId'] == dwellers[i]['serializeId']){
@@ -72,6 +72,16 @@ var saveDweller = function (data, dwellers) {
 				data['dwellers']['dwellers'][i]['stats']['stats'][7]['value'] = dwellers[i]['attributes']['Luck'];
 			}
 		}
+		
+		var lunchboxes = [];
+		for(var i=0;i<numberOfMrHandy;i++){
+			lunchboxes.push(1);
+		}
+		for(var i=0;i<numberOfLunchbox;i++){
+			lunchboxes.push(0);
+		}
+		data['vault']['LunchBoxesByType'] = lunchboxes;
+		data['vault']['LunchBoxesCount'] = lunchboxes.length;
 	}
 	return data;
 }

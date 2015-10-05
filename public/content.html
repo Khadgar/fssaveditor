@@ -2,32 +2,53 @@
 	<!--<h1>Content Page</h1>
 	<!--<p>{{ message }}</p>
 	<h1>generated table from JSON</h1>-->
-	<table class="tablestyle">
-		<tr>
-			<th>ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Strength</th>
-			<th>Perception</th>
-			<th>Endurance</th>
-			<th>Charisma</th>
-			<th>Intelligence</th>
-			<th>Agility</th>
-			<th>Luck</th>
-		</tr>
-		<tr ng-repeat="dweller in dwellerContainer">
-			<td>{{dweller.serializeId}}</td>
-			<td><input type="text" value="{{dweller.attributes.name}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.name"/></td>
-			<td><input type="text" value="{{dweller.attributes.lastName}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.lastName"/></td>
-			<td><input type="text" value="{{dweller.attributes.Strength}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Strength"/></td>
-			<td><input type="text" value="{{dweller.attributes.Perception}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Perception"/></td>
-			<td><input type="text" value="{{dweller.attributes.Endurance}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Endurance"/></td>
-			<td><input type="text" value="{{dweller.attributes.Charisma}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Charisma"/></td>
-			<td><input type="text" value="{{dweller.attributes.Intelligence}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Intelligence"/></td>
-			<td><input type="text" value="{{dweller.attributes.Agility}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Agility"/></td>
-			<td><input type="text" value="{{dweller.attributes.Luck}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Luck"/></td>		
-		</tr>
+	<table>
+	<tr>
+	<td>
+	<div>
+		<table class="tablestyle">
+			<tr>
+				<th class="serialid_style">ID</th>
+				<th class="name_style">FIRST NAME</th>
+				<th class="name_style">LAST NAME</th>
+				<th class="attribute_style">S</th>
+				<th class="attribute_style">P</th>
+				<th class="attribute_style">E</th>
+				<th class="attribute_style">C</th>
+				<th class="attribute_style">I</th>
+				<th class="attribute_style">A</th>
+				<th class="attribute_style">L</th>
+			</tr>
+			<tr ng-repeat="dweller in dwellerContainer">
+				<td class="serialid_style">{{dweller.serializeId}}</td>
+				<td class="name_style"><input type="text" value="{{dweller.attributes.name}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.name"/></td>
+				<td class="name_style"><input type="text" value="{{dweller.attributes.lastName}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.lastName"/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Strength}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Strength" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Perception}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Perception" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Endurance}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Endurance" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Charisma}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Charisma" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Intelligence}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Intelligence" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Agility}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Agility" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style"><input type="text" value="{{dweller.attributes.Luck}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Luck" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>		
+			</tr>
+		</table>
+	</div>
+	</td>
+	<td style="vertical-align: text-top;">
+	<div class="lunchboxes_style">
+		<table class="tablestyle">
+			<tr>
+				<td>Number of Lunchboxes:</td>
+				<td><input type="text" value="0" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="lunchboxes" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+			</tr>
+			<tr>
+				<td>Number of Mr. Handy:</td>
+				<td><input type="text" value="0" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="mrhandy" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+			</tr>
+		</table>
+		<button class ="btn" ng-click="save(dwellerContainer,lunchboxes,mrhandy)">SAVE</button>
+	</div>
+	</td>
+	</tr>
 	</table>
-	<button ng-click="save(dwellerContainer)">Generate</button>
-	<!--<p ng-model="message">{{ message }}</p>-->
 </div>
