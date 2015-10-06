@@ -44,4 +44,14 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 			console.log(response);
 		});
 	}
+	
+	$scope.maximize = function (dweller) {
+		dweller.attributes.Strength     = 10;
+		dweller.attributes.Perception   = 10;
+		dweller.attributes.Endurance    = 10;
+		dweller.attributes.Charisma     = 10;
+		dweller.attributes.Intelligence = 10;
+		dweller.attributes.Agility      = 10;
+		dweller.attributes.Luck         = 10;
+	}
 }]);
