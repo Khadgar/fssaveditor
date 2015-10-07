@@ -3,7 +3,8 @@ var path = require('path');
 var app = express();
 var busboy = require('connect-busboy');
 var bodyParser = require("body-parser");
-
+var http = require('http').Server(app);
+app.set('port', process.env.PORT || 3000);
 app.use(express.static('public'));
 
 app.use(busboy());
@@ -14,9 +15,7 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 require(path.join(__dirname, './routes/index.js')).Index(app,busboy);
 
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('The server is listening on http://%s:%s', host, port);
+//create server
+http.listen(app.get('port'), function() {
+  console.log('Fallout Shelter SAV editor is running:' + app.get('port'));
 });
