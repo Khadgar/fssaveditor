@@ -8,17 +8,19 @@
 		Drop your SAV file here or click to upload
 		</div>
 		<div ngf-no-file-drop="">File Drag/Drop is not supported for this browser</div>
-		<div class="hint"><p>> admin@vault:~$ You can find your SAV file on Android system here: /storage/emulated/0/Android/data/com.bethsoft.falloutshelter/files</p></div>
+		<div class="hint"><p>> admin@vault:~$ You can find your SAV file on Android system here: /storage/emulated/0/Android/data/com.bethsoft.falloutshelter/files</p>
+		{{errormsg}}
+		</div>
 		<!--
 		Files:
 		<ul>
-		  <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+		  <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}{{f.$data}}</li>
 		</ul>
 		Upload Log:
 		<pre>
-			{{log}}
-		</pre>
-		-->
+			{{log}}{{errormsg}}
+		</pre>-->
+		
 	</div>
 	
 </div>

@@ -24,8 +24,12 @@ app.controller('uploadController', ['$scope', 'Upload', '$timeout','$location','
 								$timeout(function () {
 									$scope.log = 'file: ' + config.file.name + ', Response: ' + data + '\n' + $scope.log;
 									//Share data between controllers
-									VaultData.setVault(data);
-									$location.path('/content')
+									if(data.message){
+										$scope.errormsg = data.message;
+									}else{
+										VaultData.setVault(data);
+										$location.path('/content')
+									}
 								});
 							});
 						}

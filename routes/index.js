@@ -25,14 +25,20 @@ var Index = function(app, busboy) {
             fstream.on('close', function() {
                 var file = fs.readFileSync(path.join(__dirname, '../public/files/'+ filename), "utf8");
 				var base64text = new Buffer(file,'base64');
-				var decrypted = decrypt(base64text).toString();
-				//needed because of values like: 0.00 JSON.parse() converts 0.00 into 0 
-				var re = /(\...)/g;
-				//it converts every X.00 or X.X0 into X.001 or X.X01
-				decrypted = decrypted.replace(re, '$11');
-				//debugging 
-				//fs.writeFileSync(path.join(__dirname, '../public/files/DEC_Vault1.sav'), decrypted);
-				res.json(JSON.parse(decrypted));
+				try {
+					var decrypted = decrypt(base64text).toString();
+					//needed because of values like: 0.00 JSON.parse() converts 0.00 into 0 
+					var re = /(\...)/g;
+					//it converts every X.00 or X.X0 into X.001 or X.X01
+					decrypted = decrypted.replace(re, '$11');
+					//debugging 
+					//fs.writeFileSync(path.join(__dirname, '../public/files/DEC_Vault1.sav'), decrypted);
+					res.json(JSON.parse(decrypted));
+				} catch (err) {
+					console.log('WRONG FILE');
+					res.json({'message':'ERROR: WRONG FILE: ' + filename});
+				}
+
             });
         });
     });
