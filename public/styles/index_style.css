@@ -36,12 +36,12 @@
     border: 2px dashed #14F115;
     background: #000000;
     width: 31%;
-	height: 100px;
+	height: 111px;
     margin: auto;
     color: white;
     padding-left: 1%;
     padding-right: 1%;
-    margin-top: 10px;
+    margin-top: 30px;
     font-size: 0.8vw
 }
 
@@ -54,4 +54,21 @@
 .dragover {
 	border: 12px dashed yellow;
 	background-color: rgba(0, 0, 0, 0.58);
+}
+
+a:visited {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+a:link {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+a:hover {
+	color :  # ffffff;
+	background-color :  #14F115;
+}
+a:active {
+	color :  #f0f0f0;
+	background-color :  #00ff00;
 }
