@@ -53,5 +53,6 @@ app.controller('contentController',['$scope','$http','VaultData', function($scop
 		dweller.attributes.Intelligence = 10;
 		dweller.attributes.Agility      = 10;
 		dweller.attributes.Luck         = 10;
+		dweller.attributes.LvL         = 50;
 	}
 }]);

@@ -18,6 +18,7 @@
 				<th class="attribute_style">I</th>
 				<th class="attribute_style">A</th>
 				<th class="attribute_style">L</th>
+				<th class="attribute_style">LvL</th>
 				<th class="attribute_style"></th>
 			</tr>
 			<tr ng-repeat="dweller in dwellerContainer">
@@ -30,7 +31,8 @@
 				<td class="attribute_style" tooltip="Integer between 1 and 10"><input type="text" value="{{dweller.attributes.Charisma}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Charisma" min="1" max="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
 				<td class="attribute_style" tooltip="Integer between 1 and 10"><input type="text" value="{{dweller.attributes.Intelligence}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Intelligence" min="1" max="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
 				<td class="attribute_style" tooltip="Integer between 1 and 10"><input type="text" value="{{dweller.attributes.Agility}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Agility" min="1" max="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
-				<td class="attribute_style" tooltip="Integer between 1 and 10"><input type="text" value="{{dweller.attributes.Luck}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Luck" min="1" max="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>		
+				<td class="attribute_style" tooltip="Integer between 1 and 10"><input type="text" value="{{dweller.attributes.Luck}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.Luck" min="1" max="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
+				<td class="attribute_style" tooltip="Integer between 1 and 50"><input type="text" value="{{dweller.attributes.LvL}}" ng-readonly='$scope.eEditable' ng-blur="lostFocus()" ng-focus="onFocus()" ng-model="dweller.attributes.LvL" min="1" max="50" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/></td>
 				<td><button class="maximizebtn_style" ng-click="maximize(dweller)">MAX</button></td>
 			</tr>
 		</table>
