@@ -16,7 +16,9 @@ var getDwellers = function (data) {
 				'Intelligence' : data['dwellers']['dwellers'][i]['stats']['stats'][5]['value'],
 				'Agility'      : data['dwellers']['dwellers'][i]['stats']['stats'][6]['value'],
 				'Luck'         : data['dwellers']['dwellers'][i]['stats']['stats'][7]['value'],
-				'LvL'          : data['dwellers']['dwellers'][i]['experience']['currentLevel']
+				'LvL'          : data['dwellers']['dwellers'][i]['experience']['currentLevel'],
+				'happiness'    : data['dwellers']['dwellers'][i]['happiness']['happinessValue'],
+				'gender'       : data['dwellers']['dwellers'][i]['gender']
 			};
 			dwellers.push(dweller);
 		}
@@ -72,6 +74,8 @@ var saveDweller = function (data, dwellers, numberOfLunchbox, numberOfMrHandy, c
 				data['dwellers']['dwellers'][i]['stats']['stats'][6]['value'] = dwellers[i]['attributes']['Agility'];
 				data['dwellers']['dwellers'][i]['stats']['stats'][7]['value'] = dwellers[i]['attributes']['Luck'];
 				data['dwellers']['dwellers'][i]['experience']['currentLevel'] = dwellers[i]['attributes']['LvL'];
+				data['dwellers']['dwellers'][i]['happiness']['happinessValue'] = dwellers[i]['attributes']['happiness'];
+				data['dwellers']['dwellers'][i]['gender'] = dwellers[i]['attributes']['gender'];
 			}
 		}
 		
